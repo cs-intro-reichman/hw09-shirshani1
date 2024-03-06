@@ -45,16 +45,14 @@ public class List {
     /** GIVE Textual representation of this list. */
     public String toString() {
         Node current = first;
-        StringBuilder builder = new StringBuilder("(");
-        while (current != null) {
-            builder.append(current.cp.toString()).append(", "); // Adjusted for readability
+        String s = "(";
+        while (current != null)
+        {
+            s += current.toString() + " ";
             current = current.next;
         }
-        if (builder.length() > 1) {
-            builder.setLength(builder.length() - 2); // Remove last comma and space
-        }
-        builder.append(")");
-        return builder.toString();
+        s = s.substring(0, s.length() - 1) + ")";
+        return s;
     }
 
     /**
@@ -108,20 +106,15 @@ public class List {
         Node prev = null;
         int nodeCounter = 1;
 
-        while (current != null)
-        {
-            if (current.cp.equals(chr))
-            {
-                if (nodeCounter == 1)
-                {
+        while (current != null) {
+            if (current.cp.equals(chr)) {
+                if (nodeCounter == 1) {
                     first = first.next;
                     return true;
-                }
-                else
-                {
+                } else {
                     prev.next = current.next;
                     return true;
-                }                    
+                }
             }
             prev = current;
             current = current.next;
@@ -136,15 +129,11 @@ public class List {
      * throws an IndexOutOfBoundsException.
      */
     public CharData get(int index) {
-        if (index < 0 || index >= size)
-        {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
-        }
-        else
-        {
+        } else {
             Node current = first;
-            for (int i = 0; i < index; i++)
-            {
+            for (int i = 0; i < index; i++) {
                 current = current.next;
             }
             return current.cp;
